@@ -1,0 +1,36 @@
+{
+  "name": "vue-wang-iview",
+  "version": "0.0.4",
+  "description": "基于vue的视图UI框架",
+  "private": false,
+  "main": "dist/vue-wang-iview.umd.min.js",
+  "author": "王金龙",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruanjian5216/vue-wang-iview.git"
+  },
+  "homepage": "https://github.com/ruanjian5216/vue-wang-iview.git#readme",
+  "license": "MIT",
+  "keywords": [
+    "vue-wang-iview","ui库","骨架屏","视图框架","iview","vue"
+  ],
+  "bugs": {
+    "url": "https://github.com/ruanjian5216/vue-wang-iview/issues"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib src/index.js"
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@vue/cli-service": "~4.5.0",
+    "babel-loader": "^8.2.2",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
