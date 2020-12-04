@@ -12,7 +12,12 @@
   "homepage": "https://github.com/ruanjian5216/vue-wang-iview.git#readme",
   "license": "MIT",
   "keywords": [
-    "vue-wang-iview","ui库","骨架屏","视图框架","iview","vue"
+    "vue-wang-iview",
+    "ui库",
+    "骨架屏",
+    "视图框架",
+    "iview",
+    "vue"
   ],
   "bugs": {
     "url": "https://github.com/ruanjian5216/vue-wang-iview/issues"
@@ -31,6 +36,7 @@
     "babel-loader": "^8.2.2",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
+    "markdown-it-container": "^3.0.0",
     "vue-template-compiler": "^2.6.11"
   }
 }
