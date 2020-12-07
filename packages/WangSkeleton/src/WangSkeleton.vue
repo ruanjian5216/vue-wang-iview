@@ -17,7 +17,7 @@
       <!-- 自定义部分 -->
       <div v-if="type === 'custom'" class="custom-box" :style="{ width, height,backgroundColor }">
         <div v-for="(item, index) in childrenOptionCheckd" :key="index">
-          <wang-card v-if="item.type === 'card'" :options="item.options" />
+          <wang-skeleton-card v-if="item.type === 'card'" :options="item.options" />
           <wang-skeleton-circlecom
             v-if="item.type === 'avatar'"
             :options="item.options"

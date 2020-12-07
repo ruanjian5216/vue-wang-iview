@@ -1,6 +1,6 @@
 {
   "name": "vue-wang-iview",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "基于vue的视图UI框架",
   "private": false,
   "main": "dist/vue-wang-iview.umd.min.js",
