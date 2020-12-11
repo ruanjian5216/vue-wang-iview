@@ -1,37 +1,56 @@
 <template>
   <div class="WangSkeleton-body">
-    <div v-if="!isUseSlot">
-      <!-- 卡片部分 -->
-      <wang-skeleton-card :options="options" v-if="type === 'card'" :style="{ width, height,backgroundColor }"/>
-      <!-- 头像 -->
-      <wang-skeleton-circlecom :options="options" v-if="type === 'avatar'" :style="{ width, height,backgroundColor }"/>
-      <!-- 分割线 -->
-      <wang-skeleton-straight-line :options="options" v-if="type === 'line'" :style="{ width, height,backgroundColor }"/>
-      <!-- 列表 -->
-      <wang-skeleton-listcom
-        :options="options"
-        v-if="type === 'list'"
-        :style="{ width, height,backgroundColor }"
-      />
+    <!-- 卡片部分 -->
+    <wang-skeleton-card
+      :options="options"
+      v-if="type === 'card'"
+      :style="{ width, height, backgroundColor }"
+    />
+    <!-- 头像 -->
+    <wang-skeleton-circlecom
+      :options="options"
+      v-if="type === 'avatar'"
+      :style="{ width, height, backgroundColor }"
+    />
+    <!-- 分割线 -->
+    <wang-skeleton-straight-line
+      :options="options"
+      v-if="type === 'line'"
+      :style="{ width, height, backgroundColor }"
+    />
+    <!-- 列表 -->
+    <wang-skeleton-listcom
+      :options="options"
+      v-if="type === 'list'"
+      :style="{ width, height, backgroundColor }"
+    />
 
-      <!-- 自定义部分 -->
-      <div v-if="type === 'custom'" class="custom-box" :style="{ width, height,backgroundColor }">
-        <div v-for="(item, index) in childrenOptionCheckd" :key="index">
-          <wang-skeleton-card v-if="item.type === 'card'" :options="item.options" />
-          <wang-skeleton-circlecom
-            v-if="item.type === 'avatar'"
-            :options="item.options"
-          />
-          <wang-skeleton-straight-line
-            v-if="item.type === 'line'"
-            :options="item.options"
-          />
-          <wang-skeleton-listcom v-if="item.type === 'list'" :options="item.options" />
-        </div>
+    <!-- 自定义样式部分 -->
+    <div
+      v-if="type === 'custom'"
+      class="custom-box-wrapper"
+      :style="{width,  height, backgroundColor }"
+      
+    >
+      <div v-for="(item, index) in childrenOptionCheckd" :key="index"  class="custom-box-inner">
+        <wang-skeleton-card
+          v-if="item.type === 'card'"
+          :options="item.options"
+        />
+        <wang-skeleton-circlecom
+          v-if="item.type === 'avatar'"
+          :options="item.options"
+        />
+        <wang-skeleton-straight-line
+          v-if="item.type === 'line'"
+          :options="item.options"
+        />
+        <wang-skeleton-listcom
+          v-if="item.type === 'list'"
+          :options="item.options"
+        />
       </div>
     </div>
-    <!-- 使用插槽 -->
-    <slot v-else />
   </div>
 </template>
 
@@ -71,24 +90,24 @@ export default {
     },
     // 是否显示动效
     active: {
-      type: [Boolean,String],
+      type: [Boolean, String],
       default: false,
     },
     // 盒子的长度
     width: {
       type: String,
-      default: "",
+      default: "100%",
     },
     //盒子的宽度
     height: {
       type: String,
-      default: "",
+      default: "100%",
     },
     // 模块的背景颜色
-    backgroundColor:{
-      type:String,
-      default:''
-    }
+    backgroundColor: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     // 配置项格式化设置(全局)
@@ -133,13 +152,24 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
 .WangSkeleton-body {
+  display: flex;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.custom-box {
+.custom-box-wrapper {
   display: flex;
+  align-items: center;
+}
+.custom-box-inner {
+  display: flex;
+  // 自定义的样式，不支持设置百分比单位
+  //  width: 100%;
+  //  background-color: red;
+  height: 100%;
 }
 </style>

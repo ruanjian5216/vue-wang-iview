@@ -1,12 +1,10 @@
  <!-- 列表 -->
 <template>
   <div class="WangSkeleton-body">
-    <!-- {{options}} -->
     <div
       class="wang-straightline-innerWapper"
       :class="{ 'wang-active': active }"
-      v-if="!isUseSlot"
-      :style="{ justifyContent,alignItems }"
+      :style="{ justifyContent, alignItems, margin: itemMargin }"
     >
       <!-- 每个元素 -->
       <div
@@ -27,14 +25,12 @@
         ></div>
       </div>
     </div>
-    <!-- 使用插槽 -->
-    <slot v-else />
   </div>
 </template>
 
 <script>
 export default {
-  name:"WangSkeletonListcom",
+  name: "WangSkeletonListcom",
   data() {
     return {
       // 多少列
@@ -45,25 +41,19 @@ export default {
       backgroundColor: this.options.backgroundColor || "#F2F2F2",
       justifyContent: this.options.justifyContent || "flex-start",
       active: this.options.active || false,
-      itemRowMargin: this.options.itemRowMargin || "10px",
-      itemColumnMargin: this.options.itemColumnMargin || "0px",
-      firstWidth: this.options.firstWidth || "200px",
+      itemMargin: this.options.itemMargin || "0 5px",
+      itemRowMargin: this.options.itemRowMargin || "0",
+      itemColumnMargin: this.options.itemColumnMargin || "0",
+      firstWidth:
+        this.options.firstWidth ||
+        `calc(${this.options.width ? this.options.width : "600px"} - 40%)`,
       lastWidth: this.options.lastWidth || "",
-      alignItems:this.options.alignItems||'center'
+      alignItems: this.options.alignItems || "center",
     };
   },
   props: {
-    // 是否使用插槽
-    isUseSlot: {
-      type: Boolean,
-      default: false,
-    },
     // 设置项
     options: {
-      type: Object,
-      default: () => ({}),
-    },
-    childrenOption: {
       type: Object,
       default: () => ({}),
     },
@@ -94,7 +84,7 @@ export default {
 }
 // 每个元素
 .wang-straightline-item {
-  border-radius: 5px;
+  border-radius: 3px;
 }
 // 是否开启动画
 .wang-active {

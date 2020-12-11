@@ -1,35 +1,31 @@
  <!-- 头像 -->
 <template>
-  <div class="WangSkeleton-body">
+  <div
+    class="WangSkeleton-body"
+    :class="{ 'wang-active': active }"
+    :style="{ justifyContent, alignItems, margin: itemMargin }"
+  >
+    <!-- 每个元素 -->
+    <!-- 列 -->
     <div
-      class="wang-circlecom-innerWapper"
-      :class="{'wang-active': active }"
-      v-if="!isUseSlot"
-      :style="{ justifyContent, alignItems }"
-      style="height: 100%"
+      v-for="(itemx, indexx) in column"
+      :key="indexx"
+      :style="{ margin: itemColumnMargin }"
     >
-      <!-- 每个元素 -->
+    <!-- 行 -->
       <div
-        v-for="(itemx, indexx) in column"
-        :key="indexx"
-        :style="{ margin: itemColumnMargin }"
-      >
-        <div
-          v-for="(itemy, indexy) in row"
-          :key="indexy"
-          class="wang-circlecom-item"
-          :style="{ width, height, backgroundColor, margin: itemRowMargin }"
-        ></div>
-      </div>
+        v-for="(itemy, indexy) in row"
+        :key="indexy"
+        class="wang-circlecom-item"
+        :style="{ width, height, backgroundColor ,margin: itemRowMargin}"
+      ></div>
     </div>
-    <!-- 使用插槽 -->
-    <slot v-else />
   </div>
 </template>
 
 <script>
 export default {
-  name:"WangSkeletonCirclecom",
+  name: "WangSkeletonCirclecom",
   data() {
     return {
       // 多少列
@@ -40,23 +36,15 @@ export default {
       backgroundColor: this.options.backgroundColor || "#F2F2F2",
       justifyContent: this.options.justifyContent || "flex-start",
       active: this.options.active || false,
-      itemRowMargin: this.options.itemRowMargin || "10px",
-      itemColumnMargin: this.options.itemColumnMargin || "0px",
+      itemMargin: this.options.itemMargin || "0 5px",
+      itemRowMargin: this.options.itemRowMargin || "0",
+      itemColumnMargin: this.options.itemColumnMargin || "0",
       alignItems: this.options.alignItems || "center",
     };
   },
   props: {
-    // 是否使用插槽
-    isUseSlot: {
-      type: Boolean,
-      default: false,
-    },
     // 设置项
     options: {
-      type: Object,
-      default: () => ({}),
-    },
-    childrenOption: {
       type: Object,
       default: () => ({}),
     },
@@ -65,14 +53,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wang-circlecom-innerWapper {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
+// .WangSkeleton-body {
+//   display: flex;
+//   height:100%;
+// }
 // 每个元素
-
 .wang-circlecom-item {
   border-radius: 50%;
 }

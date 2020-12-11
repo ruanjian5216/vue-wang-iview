@@ -1,34 +1,29 @@
 <template>
-  <div class="WangSkeleton-body">
+  <div
+    class="WangSkeleton-body"
+    :class="{ 'wang-active': active }"
+    :style="{ justifyContent, alignItems, margin: itemMargin }"
+  >
+    <!-- 每个元素 -->
     <div
-      class="wang-card-innerWapper"
-      :class="{ 'wang-active': active }"
-      v-if="!isUseSlot"
-      :style="{ justifyContent,alignItems }"
+      v-for="(itemx, indexx) in column"
+      :key="indexx"
+      class="wang-card-item-column"
+      :style="{ margin: itemColumnMargin }"
     >
-      <!-- 每个元素 -->
       <div
-        v-for="(itemx, indexx) in column"
-        :key="indexx"
-        class="wang-card-item-column"
-         :style="{ margin:itemColumnMargin }"
-      >
-        <div
-          v-for="(itemy, indexy) in row"
-          :key="indexy"
-          class="wang-card-item"
-          :style="{ width, height, backgroundColor,margin:itemRowMargin }"
-        ></div>
-      </div>
+        v-for="(itemy, indexy) in row"
+        :key="indexy"
+        class="wang-card-item"
+        :style="{ width, height, backgroundColor, margin: itemRowMargin }"
+      ></div>
     </div>
-    <!-- 使用插槽 -->
-    <slot v-else />
   </div>
 </template>
 
 <script>
 export default {
-  name:"WangSkeletonCard",
+  name: "WangSkeletonCard",
   data() {
     return {
       //  多少列
@@ -40,23 +35,15 @@ export default {
       backgroundColor: this.options.backgroundColor || "#F2F2F2",
       justifyContent: this.options.justifyContent || "flex-start",
       active: this.options.active || false,
-      itemRowMargin:this.options.itemRowMargin||'10px',
-      itemColumnMargin:this.options.itemColumnMargin||'0px',
-      alignItems:this.options.alignItems||'center'
+      itemMargin: this.options.itemMargin || "0 5px",
+      itemRowMargin: this.options.itemRowMargin || "0",
+      itemColumnMargin: this.options.itemColumnMargin || "0",
+      alignItems: this.options.alignItems || "center",
     };
   },
   props: {
-    // 是否使用插槽
-    isUseSlot: {
-      type: Boolean,
-      default: false,
-    },
     // 设置项
     options: {
-      type: Object,
-      default: () => ({}),
-    },
-    childrenOption: {
       type: Object,
       default: () => ({}),
     },
@@ -65,14 +52,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wang-card-innerWapper {
-  display: flex;
-   height: 100%;
-  width: 100%;
-}
+// .WangSkeleton-body {
+//   display: flex;
+// //  width: 100%; 
+// //  background-color: red;
+// }
 
 .wang-card-item {
-  border-radius: 5px;
+  border-radius: 3px;
 }
 // 是否开启动画
 .wang-active {
